@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 1200">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: url(#Degradado_sin_nombre_10);
+        opacity: .8;
+      }
+
+      .cls-3 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-1" x="223.73" y="41.78" width="667.85" height="1140.37"/>
+    </clipPath>
+    <radialGradient id="Degradado_sin_nombre_10" data-name="Degradado sin nombre 10" cx="557.66" cy="-2121.1" fx="557.66" fy="-2121.1" r="248.17" gradientTransform="translate(0 11806.67) scale(1 5.28)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#153949"/>
+      <stop offset="1" stop-color="#001f31"/>
+    </radialGradient>
+  </defs>
+  <g class="cls-3">
+    <rect class="cls-2" x="223.73" y="41.78" width="667.85" height="1140.37"/>
+  </g>
+</svg>

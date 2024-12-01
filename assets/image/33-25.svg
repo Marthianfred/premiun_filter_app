@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1200 1200">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 229.07px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: #d60b18;
+      }
+
+      .cls-3, .cls-2 {
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <path class="cls-3" d="M205.2,780.27c2.5,3.43,8.37,6.26,13.04,6.26h879.64c4.66,0,8.48-3.35,8.48-7.42v-311.46c0-4.08-3.82-7.41-8.48-7.41H218.24c-4.67,0-10.54,2.81-13.04,6.26l-109.68,150.63c-2.52,3.43-2.52,9.06,0,12.52l109.68,150.63Z"/>
+  <text class="cls-1" transform="translate(355.57 722)"><tspan x="0" y="0">VOLVER</tspan></text>
+  <path class="cls-2" d="M259.55,577.54c9.79-7.66,17.81-3.75,17.81,8.69v90.46c0,12.44-8.02,16.34-17.81,8.67l-51.07-39.97c-9.79-7.66-9.79-20.2,0-27.87l51.07-39.97Z"/>
+</svg>
