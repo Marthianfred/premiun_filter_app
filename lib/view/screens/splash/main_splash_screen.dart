@@ -21,7 +21,7 @@ class SplashScreenState extends State<SplashScreen> {
       body: Obx(
             () => controller.hasConnection.value
             ? const SplashMobileScreen()
-            : const MainNoConnectionScreen(),
+            : const SplashMobileScreen(), // mejorar logica de no Internet
       ),
     );
   }

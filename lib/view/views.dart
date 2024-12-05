@@ -7,6 +7,7 @@ export 'package:premium_filter/view/base/button/contact_btn_widget.dart';
 export 'package:premium_filter/view/base/favorite_list_widget.dart';
 export 'package:premium_filter/view/base/button/dashboard_btn_widget.dart';
 export 'package:premium_filter/view/base/button/pf_button2.dart';
+export 'package:premium_filter/view/base/button/pf_button3.dart';
 export 'package:premium_filter/view/base/custom_snackbar.dart';
 export 'package:premium_filter/view/base/card_empty_text_widget.dart';
 export 'package:premium_filter/view/base/card_tile_dropdown_widget.dart';
@@ -26,7 +27,8 @@ export 'package:premium_filter/view/screens/vechicle/widget/manufacturer_widget.
 export 'package:premium_filter/view/screens/vechicle/widget/year_widget.dart';
 export 'package:premium_filter/view/screens/vechicle/widget/model_widget.dart';
 export 'package:premium_filter/view/screens/vechicle/widget/engine_widget.dart';
-export 'package:premium_filter/view/screens/noConnection/no_connection.dart';
 export 'package:premium_filter/view/screens/find_products/main_find_products_widget.dart';
 export 'package:premium_filter/view/screens/find_products/single_product_widget.dart';
 export 'package:premium_filter/view/screens/ref_premium/main_ref_premium_widget.dart';
+export 'package:premium_filter/view/screens/view_more/main_view_more_screen.dart';
+export 'package:premium_filter/view/screens/equivalences/main_equivalences_widget.dart';

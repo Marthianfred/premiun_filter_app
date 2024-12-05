@@ -45,30 +45,7 @@ class _NavWidgetState extends State<NavWidget> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text('favorites'.tr,
-                                style: nunitoBold.copyWith(
-                                    color: colorTextPrimary)),
-                            content: const SizedBox(
-                              width: 300,
-                              child: Text(
-                                "no in desing.",
-                                style: TextStyle(color: colorTextPrimary),
-                              ),
-                            ),
-                            actions: [
-                              TextButton(
-                                  onPressed: () {
-                                    Get.back();
-                                  },
-                                  child: Text('close'.tr))
-                            ],
-                          );
-                        });
-                    // Get.offNamed(RouteHelper.getFavoritesRoute());
+                    Get.offNamed(RouteHelper.getFavoritesRoute());
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

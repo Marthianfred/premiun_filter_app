@@ -8,10 +8,19 @@ enum PFTypeEnum {
   getMotor,
 }
 
-enum BtnPF { btnVehicles, btnTruckAndBus, btnOffRoad, btnRefPremium, btnEquivalences, btnMeasures, btnAllReferences }
+enum BtnPF {
+  btnVehicles,
+  btnTruckAndBus,
+  btnOffRoad,
+  btnRefPremium,
+  btnEquivalences,
+  btnMeasures,
+  btnAllReferences
+}
 
 class VehiclesController extends GetxController {
-  VehiclesController({required this.localizationController, required this.pfRepo});
+  VehiclesController(
+      {required this.localizationController, required this.pfRepo});
 
   final LocalizationController localizationController;
   final PFRepo pfRepo;
@@ -34,20 +43,22 @@ class VehiclesController extends GetxController {
 
   Future<List<dynamic>> getTypeApplication({bool needLoading = false}) async {
     return _executeApiCall(
-      apiCall: () => pfRepo.GetTipoAplicacion(language: Get.find<LocalizationController>().locale.languageCode),
+      apiCall: () => pfRepo.GetTipoAplicacion(
+          language: Get.find<LocalizationController>().locale.languageCode),
       modelUpdater: (json) => TypeApplicationModel.fromJson(json).data,
       needLoading: needLoading,
     );
   }
 
-  Future<List<dynamic>> getManufacturer({String? idTMk, bool needLoading = false}) async {
+  Future<List<dynamic>> getManufacturer(
+      {String? idTMk, bool needLoading = false}) async {
     if (idTMk == null || idTMk.isEmpty) {
       return List.empty();
     }
 
     return _executeApiCall(
       apiCall: () => pfRepo.GetMarcaVehiculo(
-        idTMk: idTMk,
+        idTMk: int.tryParse(idTMk) ?? 0,
         language: Get.find<LocalizationController>().locale.languageCode,
       ),
       modelUpdater: (json) => ManufacturerModel.fromJson(json).d,
@@ -65,28 +76,36 @@ class VehiclesController extends GetxController {
     );
   }
 
-  Future<List<dynamic>> getModel({required String idMk, required String idTMk, required String year, bool needLoader = false}) async {
+  Future<List<dynamic>> getModel(
+      {required String idMk,
+      required String idTMk,
+      required String year,
+      bool needLoader = false}) async {
     return _executeApiCall(
       apiCall: () => pfRepo.GetModel(
-        idMk: idMk,
-        idTMk: idTMk,
+        idMk: int.tryParse(idMk) ?? 0,
+        idTMk: int.tryParse(idTMk) ?? 0,
         language: Get.find<LocalizationController>().locale.languageCode,
-        year: year,
+        year: int.tryParse(year) ?? 1234,
       ),
       modelUpdater: (json) => ModelModel.fromJson(json).d,
       needLoading: needLoader,
     );
   }
 
-  Future<List<dynamic>> getEngine({required String idRefMk, required String idTMk, required String year, bool needLoader = false}) async {
+  Future<List<dynamic>> getEngine(
+      {required String idRefMk,
+      required String idTMk,
+      required String year,
+      bool needLoader = false}) async {
     if (idRefMk.isEmpty || idTMk.isEmpty || year.isEmpty) return List.empty();
 
     return _executeApiCall(
       apiCall: () => pfRepo.GetEngine(
-        idRefMk: idRefMk,
-        idTMk: idTMk,
+        idRefMk: int.tryParse(idRefMk) ?? 0,
+        idTMk: int.tryParse(idTMk) ?? 0,
         language: Get.find<LocalizationController>().locale.languageCode,
-        year: year,
+        year: int.tryParse(year) ?? 1234,
       ),
       modelUpdater: (json) {
         _engines.value = EngineModel.fromJson(json);
@@ -102,6 +121,7 @@ class VehiclesController extends GetxController {
     required bool needLoading,
   }) async {
     if (needLoading) OverlayHelper.start();
+
     final response = await apiCall();
     if (needLoading) OverlayHelper.stop();
 
@@ -123,7 +143,12 @@ class VehiclesController extends GetxController {
 
   dynamic _processJson(String jsonString) {
     return jsonDecode(
-      jsonString.removeAllWhitespace.replaceAll("\\r\\n", "").replaceAll("\\", "").replaceAll('"[', "[").replaceAll(']"', "]").replaceAll('.0', ""),
+      jsonString.removeAllWhitespace
+          .replaceAll("\\r\\n", "")
+          .replaceAll("\\", "")
+          .replaceAll('"[', "[")
+          .replaceAll(']"', "]")
+          .replaceAll('.0', ""),
     );
   }
 }

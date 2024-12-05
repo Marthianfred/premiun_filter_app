@@ -45,15 +45,15 @@ class PFButton extends StatelessWidget {
                 alignment: Alignment.center,
                 child: child,
               ),
-              Positioned(
-                right: Dimensions.paddingSizeDefault,
-                top: Dimensions.paddingSizeSmall - 4,
-                child: SvgPicture.asset(
-                  "assets/image/btn_arrow.svg",
-                  height: 40,
-                  colorFilter: const ColorFilter.mode(colorPrimary, BlendMode.srcIn),
-                ),
-              ),
+              // Positioned(
+              //   right: Dimensions.paddingSizeDefault,
+              //   top: Dimensions.paddingSizeSmall - 4,
+              //   child: SvgPicture.asset(
+              //     "assets/image/btn_arrow.svg",
+              //     height: 40,
+              //     colorFilter: const ColorFilter.mode(colorPrimary, BlendMode.srcIn),
+              //   ),
+              // ),
             ],
           ),
         ),

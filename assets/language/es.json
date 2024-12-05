@@ -14,7 +14,7 @@
   "refPremium": "Ref. Premium",
   "equivalences": "Equivalencias",
   "measures": "Medidas",
-  "allReferences": "Todas las referencias",
+  "allReferences": "Todas las ref.",
   "applicationType": "Tipo de Aplicación",
   "loading": "Cargando...",
   "typeApplication": "Tipo de Aplicación",
@@ -51,5 +51,6 @@
   "store_online": "Tienda en línea",
   "home": "Inicio",
   "favorites": "Favoritos",
-  "contact": "Contacto"
+  "contact": "Contacto",
+  "return": "Volver"
 }

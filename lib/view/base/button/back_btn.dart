@@ -1,14 +1,14 @@
 import 'package:premium_filter/export.dart';
 
 class BackBtn extends StatelessWidget {
-  const BackBtn({super.key});
+  BackBtn({super.key, this.onTap});
+
+  Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Get.back();
-      },
+      onTap: () => onTap != null ? onTap!() : Get.back(),
       child: ClipPath(
         clipper: ArrowClipper(),
         child: Container(
@@ -22,8 +22,10 @@ class BackBtn extends StatelessWidget {
                 top: 2,
                 child: Center(
                   child: Text(
-                      'VOLVER',
-                      style: oswaldBlack.copyWith(color: Colors.white, fontSize: Dimensions.fontSizeExtraLarge),
+                    'return'.tr,
+                    style: oswaldBlack.copyWith(
+                        color: Colors.white,
+                        fontSize: Dimensions.fontSizeExtraLarge),
                   ),
                 ),
               ),

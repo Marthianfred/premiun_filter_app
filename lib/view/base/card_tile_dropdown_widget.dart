@@ -229,7 +229,6 @@ class _CardTileDropdownWidgetState extends State<CardTileDropdownWidget> {
   List<PopupMenuEntry<String>> _buildYearOptions() {
     List<YearData> options = widget.list as List<YearData>;
     options = options.where((element) => element.year != "").toList();
-    options.add(YearData(year: ""));
     return options.map((YearData option) {
       return PopupMenuItem<String>(
         value: option.year.isEmpty ? "" : option.year.toString(),

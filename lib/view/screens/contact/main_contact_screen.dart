@@ -105,17 +105,16 @@ class _MainContactScreenState extends State<MainContactScreen> {
                             text: "commercial_advisor".tr,
                           ),
                           ContactBtnWidget(
-                            onTap: () async => await launchUrl(Uri.parse(
-                                "mailto:comercial1@premiumfilters.com.co")),
-                            image: SvgPicture.asset(
-                              "assets/image/20-25.svg",
-                              width: 80,
-                              height: 80,
-                              colorFilter: const ColorFilter.mode(
-                                  Colors.white, BlendMode.srcIn),
-                            ),
-                            text: "email".tr,
-                          ),
+                              onTap: () async => await launchUrl(
+                                  Uri.parse("https://wa.link/kzzqlx")),
+                              image: SvgPicture.asset(
+                                "assets/image/17-25.svg",
+                                width: 80,
+                                height: 80,
+                                colorFilter: const ColorFilter.mode(
+                                    Colors.white, BlendMode.srcIn),
+                              ),
+                              text: "whatsapp".tr),
                           ContactBtnWidget(
                             onTap: () async => await launchUrl(
                                 Uri.parse("https://premiumfilters.co/")),
@@ -130,35 +129,36 @@ class _MainContactScreenState extends State<MainContactScreen> {
                           ),
                           ContactBtnWidget(
                               onTap: () async => await launchUrl(
-                                  Uri.parse("https://wa.link/kzzqlx")),
-                              image: SvgPicture.asset(
-                                "assets/image/15-25.svg",
-                                width: 80,
-                                height: 80,
-                                colorFilter: const ColorFilter.mode(
-                                  Colors.white, BlendMode.srcIn),
-                              ),
-                              text: "whatsapp".tr),
-                          ContactBtnWidget(
-                              onTap: () async => await launchUrl(
                                   Uri.parse("https://premiumfilters.store/")),
                               image: SvgPicture.asset(
-                                "assets/image/15-25.svg",
+                                "assets/image/19-25.svg",
                                 width: 80,
                                 height: 80,
                                 colorFilter: const ColorFilter.mode(
-                                  Colors.white, BlendMode.srcIn),
+                                    Colors.white, BlendMode.srcIn),
                               ),
-                              text: "online_store"),
+                              text: "store_online".tr),
+                          ContactBtnWidget(
+                            onTap: () async => await launchUrl(Uri.parse(
+                                "mailto:comercial1@premiumfilters.com.co")),
+                            image: SvgPicture.asset(
+                              "assets/image/20-25.svg",
+                              width: 80,
+                              height: 80,
+                              colorFilter: const ColorFilter.mode(
+                                  Colors.white, BlendMode.srcIn),
+                            ),
+                            text: "email".tr,
+                          ),
                           ContactBtnWidget(
                               onTap: () async => await launchUrl(Uri.parse(
                                   "https://www.instagram.com/premiumfilters/")),
                               image: SvgPicture.asset(
-                                "assets/image/15-25.svg",
+                                "assets/image/21-25.svg",
                                 width: 80,
                                 height: 80,
                                 colorFilter: const ColorFilter.mode(
-                                  Colors.white, BlendMode.srcIn),
+                                    Colors.white, BlendMode.srcIn),
                               ),
                               text: "REDES \n SOCIALES"),
                         ],

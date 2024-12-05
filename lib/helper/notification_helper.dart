@@ -1,11 +1,8 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
 import 'package:pf_service/pf_service.dart';
 import 'package:premium_filter/util/app_constants.dart';
 
@@ -85,40 +82,6 @@ class NotificationHelper {
     await fln.show(0, title, body, platformChannelSpecifics, payload: notificationBody != null ? jsonEncode(notificationBody.toJson()) : null);
   }
 
-  static Future<void> showBigPictureNotificationHiddenLargeIcon(
-      String? title, String? body, String? orderID, NotificationBody? notificationBody, String image, FlutterLocalNotificationsPlugin fln) async {
-    final String largeIconPath = await _downloadAndSaveFile(image, 'largeIcon');
-    final String bigPicturePath = await _downloadAndSaveFile(image, 'bigPicture');
-    final BigPictureStyleInformation bigPictureStyleInformation = BigPictureStyleInformation(
-      FilePathAndroidBitmap(bigPicturePath),
-      hideExpandedLargeIcon: true,
-      contentTitle: title,
-      htmlFormatContentTitle: true,
-      summaryText: body,
-      htmlFormatSummaryText: true,
-    );
-    final AndroidNotificationDetails androidPlatformChannelSpecifics = AndroidNotificationDetails(
-      'premium_filter_informa',
-      'premium_filter_informa',
-      largeIcon: FilePathAndroidBitmap(largeIconPath),
-      priority: Priority.max,
-      styleInformation: bigPictureStyleInformation,
-      importance: Importance.max,
-      sound: const RawResourceAndroidNotificationSound('default'),
-    );
-    final NotificationDetails platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics);
-    await fln.show(0, title, body, platformChannelSpecifics, payload: notificationBody != null ? jsonEncode(notificationBody.toJson()) : null);
-  }
-
-  static Future<String> _downloadAndSaveFile(String url, String fileName) async {
-    final Directory directory = await getApplicationDocumentsDirectory();
-    final String filePath = '${directory.path}/$fileName';
-    final http.Response response = await http.get(Uri.parse(url));
-    final File file = File(filePath);
-    await file.writeAsBytes(response.bodyBytes);
-    return filePath;
-  }
-
   static NotificationBody convertNotification(Map<String, dynamic> data) {
     if (data['type'] == 'general') {
       return NotificationBody(notificationType: NotificationType.general);
@@ -127,10 +90,6 @@ class NotificationHelper {
     } else {
       return NotificationBody(
         notificationType: NotificationType.message,
-// deliverymanId: data['sender_type'] == 'delivery_man' ? 0 : null,
-// adminId: data['sender_type'] == 'admin' ? 0 : null,
-// restaurantId: data['sender_type'] == 'vendor' ? 0 : null,
-// conversationId: int.parse(data['conversation_id'].toString()),
       );
     }
   }

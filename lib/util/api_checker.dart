@@ -6,11 +6,11 @@ class ApiChecker {
       case 1:
         Get.find<RestService>().cancelAllRequests();
         Get.find<SplashController>().hasConnection.value = false;
-        Get.offAllNamed(RouteHelper.getNoConnectionRoute());
+        // mejorar logica de no Internet
         break;
 
       default:
-        if(kDebugMode) print(response.statusCode);
+        if (kDebugMode) print(response.statusCode);
         break;
     }
   }

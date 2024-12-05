@@ -45,11 +45,12 @@
   "insertNumberRef": "Insert the reference number",
   "contact_us": "Contact Us",
   "commercial_advisor": "COMMERCIAL ADVISOR",
-  "email": "Email",
+  "email": "Mail",
   "web_page": "Web page",
   "whatsapp": "Whatsapp",
   "store_online": "Online Store",
   "home": "Home",
   "favorites": "Favorites",
-  "contact": "Contact"
+  "contact": "Contact",
+  "return": "Back"
 }

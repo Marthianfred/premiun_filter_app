@@ -10,12 +10,14 @@ class RouteHelper {
   static const String contact = '/contact';
   static const String favorites = '/favorites';
   static const String vehicle = '/vehicle';
-  static const String noConnection = '/noConnection';
   static const String findProducts = '/find-products';
   static const String singleProducts = '/sigle-products';
   static const String refPremium = '/ref-premium';
+  static const String equivalences = '/equivalences';
+  static const String viewMore = '/view-more';
 
-  static String getInitialRoute({bool fromSplash = false}) => '$initial?from-splash=$fromSplash';
+  static String getInitialRoute({bool fromSplash = false}) =>
+      '$initial?from-splash=$fromSplash';
 
   static String getSplashRoute(NotificationBody? body) {
     String data = 'null';
@@ -26,17 +28,30 @@ class RouteHelper {
     return '$splash?data=$data';
   }
 
-  static String getUpdateRoute(bool isUpdate) => '$update?update=${isUpdate.toString()}';
+  static String getUpdateRoute(bool isUpdate) =>
+      '$update?update=${isUpdate.toString()}';
+
   static String getDashboardRoute() => dashboard;
+
   static String getLanguageRoute() => language;
+
   static String getFavoritesRoute() => favorites;
+
   static String getErrorRoute() => error;
+
   static String getContactRoute() => contact;
+
   static String getVehicleRoute() => vehicle;
-  static String getNoConnectionRoute() => noConnection;
+
   static String getFindProductsRoute() => findProducts;
+
   static String getSingleProductRoute() => singleProducts;
+
   static String getRefPremiumRoute() => refPremium;
+
+  static String getEquivalencesRoute() => equivalences;
+
+  static String getViewMoreRoute() => viewMore;
 
   static List<GetPage> routes = [
     GetPage(
@@ -45,7 +60,8 @@ class RouteHelper {
       page: () {
         NotificationBody? data;
         if (Get.parameters['data'] != 'null') {
-          List<int> decode = base64Decode(Get.parameters['data']!.replaceAll(' ', '+'));
+          List<int> decode =
+              base64Decode(Get.parameters['data']!.replaceAll(' ', '+'));
           data = NotificationBody.fromJson(jsonDecode(utf8.decode(decode)));
         }
         return SplashScreen(body: data);
@@ -54,7 +70,8 @@ class RouteHelper {
     GetPage(
       name: update,
       popGesture: true,
-      page: () => MainUpdateScreen(isUpdate: Get.parameters['update'] == 'true'),
+      page: () =>
+          MainUpdateScreen(isUpdate: Get.parameters['update'] == 'true'),
     ),
     GetPage(
       name: language,
@@ -74,17 +91,12 @@ class RouteHelper {
     GetPage(
       name: favorites,
       popGesture: true,
-      page: () => const MainFavoritesSreen(),
+      page: () => const MainFavoritesScreen(),
     ),
     GetPage(
       name: vehicle,
       popGesture: true,
       page: () => const MainVehicleScreen(),
-    ),
-    GetPage(
-      name: noConnection,
-      popGesture: false,
-      page: () => const MainNoConnectionScreen(),
     ),
     GetPage(
       name: findProducts,
@@ -100,6 +112,16 @@ class RouteHelper {
       name: refPremium,
       popGesture: true,
       page: () => const MainRefPremiumWidget(),
+    ),
+    GetPage(
+      name: equivalences,
+      popGesture: true,
+      page: () => const MainEquivalencesWidget(),
+    ),
+    GetPage(
+      name: viewMore,
+      popGesture: true,
+      page: () => const MainViewMoreScreen(),
     ),
   ];
 

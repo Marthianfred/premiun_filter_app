@@ -13,10 +13,12 @@ class CardTextFieldWithIconWidget extends StatefulWidget {
   final TextEditingController controller;
 
   @override
-  State<CardTextFieldWithIconWidget> createState() => _CardTextFieldWithIconWidgetState();
+  State<CardTextFieldWithIconWidget> createState() =>
+      _CardTextFieldWithIconWidgetState();
 }
 
-class _CardTextFieldWithIconWidgetState extends State<CardTextFieldWithIconWidget> {
+class _CardTextFieldWithIconWidgetState
+    extends State<CardTextFieldWithIconWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,7 +29,8 @@ class _CardTextFieldWithIconWidgetState extends State<CardTextFieldWithIconWidge
           children: [
             Expanded(
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeExtraSmall),
+                padding: const EdgeInsets.symmetric(
+                    vertical: Dimensions.paddingSizeExtraSmall),
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(16),
@@ -38,7 +41,9 @@ class _CardTextFieldWithIconWidgetState extends State<CardTextFieldWithIconWidge
                 child: Center(
                   child: Text(
                     widget.title,
-                    style: oswaldBold.copyWith(color: Colors.white, fontSize: Dimensions.fontSizeExtraLarge),
+                    style: oswaldBold.copyWith(
+                        color: Colors.white,
+                        fontSize: Dimensions.fontSizeExtraLarge),
                   ),
                 ),
               ),
@@ -49,7 +54,8 @@ class _CardTextFieldWithIconWidgetState extends State<CardTextFieldWithIconWidge
           children: [
             Expanded(
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: Dimensions.paddingSizeDefault),
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(16),
@@ -85,35 +91,49 @@ class _CardTextFieldWithIconWidgetState extends State<CardTextFieldWithIconWidge
 
   Widget buildText() {
     return Padding(
-        padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeDefault),
+        padding:
+            const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeDefault),
         child: TextField(
+          onSubmitted: (value) async {
+            await Get.find<FindController>().getFiltro(pfRef: value);
+            Get.toNamed(RouteHelper.getSingleProductRoute());
+          },
           inputFormatters: [
-            FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9-]')), // Permite solo letras y números
+            FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9-]')),
             UpperCaseTextFormatter(),
           ],
           controller: widget.controller,
           style: nunitoRegular.copyWith(color: Colors.black),
           decoration: InputDecoration(
-              prefixIcon: ValueListenableBuilder<TextEditingValue>(
-                valueListenable: widget.controller,
-                builder: (BuildContext context, TextEditingValue value, Widget? child) {
-                  return value.text.isEmpty
-                      ? IconButton(
-                          onPressed: () async => widget.controller.text = await showCameraDialog(context) ?? "",
-                          icon: const Icon(Icons.camera_alt_outlined, color: colorPrimary),
-                        )
-                      : IconButton(
-                          onPressed: () async {
-                            await Get.find<FindController>().getSrReferences(pfRef: widget.controller.text);
-                            Get.toNamed(RouteHelper.getSingleProductRoute());
-                          },
-                          icon: const Icon(Icons.search, color: colorPrimary),
-                        );
-                },
+              prefixIcon: IconButton(
+                onPressed: () async => widget.controller.text =
+                    await showCameraDialog(context) ?? "",
+                icon:
+                    const Icon(Icons.camera_alt_outlined, color: colorPrimary),
               ),
-              suffixIcon: IconButton(
-                onPressed: () => widget.controller.clear(),
-                icon: const Icon(Icons.clear),
+              suffixIcon: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () => widget.controller.clear(),
+                    icon: const Icon(
+                      Icons.clear,
+                      color: colorPrimary,
+                    ),
+                  ),
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () async {
+                      await Get.find<FindController>()
+                          .getFiltro(pfRef: widget.controller.text);
+                      Get.toNamed(RouteHelper.getSingleProductRoute());
+                    },
+                    icon: const Icon(Icons.search, color: colorPrimary),
+                  )
+                ],
               ),
               hintText: widget.textTitle,
               hintStyle: nunitoRegular.copyWith(color: Colors.grey),
@@ -127,7 +147,8 @@ class _CardTextFieldWithIconWidgetState extends State<CardTextFieldWithIconWidge
 
 class UpperCaseTextFormatter extends TextInputFormatter {
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
     return newValue.copyWith(
       text: newValue.text.toUpperCase(),
       selection: newValue.selection,

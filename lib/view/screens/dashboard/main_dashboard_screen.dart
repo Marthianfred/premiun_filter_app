@@ -27,16 +27,19 @@ class _MainDashboardScreenState extends State<MainDashboardScreen> {
             color: Colors.white,
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: Dimensions.paddingSizeDefault),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     const SizedBox(height: Dimensions.paddingSizeDefault),
-                    ListView(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
+                    BackBtn(
+                        onTap: () =>
+                            Get.offAllNamed(RouteHelper.getLanguageRoute())),
+                    const SizedBox(height: Dimensions.paddingSizeDefault),
+                    Column(
                       children: <Widget>[
                         DashboardBtnWidget(
                           image: "assets/image/vehicle.svg",
@@ -51,8 +54,10 @@ class _MainDashboardScreenState extends State<MainDashboardScreen> {
                           image: "assets/image/truck.svg",
                           text: 'truckAndBus'.tr.toUpperCase(),
                           onPress: () {
-                            vehiclesController.btnPF.value = BtnPF.btnTruckAndBus;
-                            vehiclesController.typeApplicationController.text = '2';
+                            vehiclesController.btnPF.value =
+                                BtnPF.btnTruckAndBus;
+                            vehiclesController.typeApplicationController.text =
+                                '2';
                             Get.toNamed(RouteHelper.getVehicleRoute());
                           },
                         ),
@@ -61,8 +66,10 @@ class _MainDashboardScreenState extends State<MainDashboardScreen> {
                           image: "assets/image/off-road.svg",
                           text: 'offRoad'.tr.toUpperCase(),
                           onPress: () {
-                            vehiclesController.btnPF.value = BtnPF.btnTruckAndBus;
-                            vehiclesController.typeApplicationController.text = '3';
+                            vehiclesController.btnPF.value =
+                                BtnPF.btnTruckAndBus;
+                            vehiclesController.typeApplicationController.text =
+                                '3';
                             Get.toNamed(RouteHelper.getVehicleRoute());
                           },
                         ),
@@ -79,84 +86,20 @@ class _MainDashboardScreenState extends State<MainDashboardScreen> {
                           image: "assets/image/equity.svg",
                           text: 'equivalences'.tr.toUpperCase(),
                           onPress: () {
-                            showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: Text('DEMO APP'.tr, style: const TextStyle(color: colorTextPrimary)),
-                                    content: const SizedBox(
-                                      width: 300,
-                                      child: Text(
-                                        "No in demo app.",
-                                        style: TextStyle(color: colorTextPrimary),
-                                      ),
-                                    ),
-                                    actions: [
-                                      TextButton(
-                                          onPressed: () {
-                                            Get.back();
-                                          },
-                                          child: Text('close'.tr))
-                                    ],
-                                  );
-                                });
+                            Get.toNamed(RouteHelper.getEquivalencesRoute());
                           },
                         ),
                         const SizedBox(height: Dimensions.paddingSizeSmall),
                         DashboardBtnWidget(
                           image: "assets/image/rule.svg",
                           text: 'measures'.tr.toUpperCase(),
-                          onPress: () {
-                            showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: Text('DEMO APP'.tr, style: const TextStyle(color: colorTextPrimary)),
-                                    content: const SizedBox(
-                                      width: 300,
-                                      child: Text(
-                                        "No in demo app.",
-                                        style: TextStyle(color: colorTextPrimary),
-                                      ),
-                                    ),
-                                    actions: [
-                                      TextButton(
-                                          onPressed: () {
-                                            Get.back();
-                                          },
-                                          child: Text('close'.tr))
-                                    ],
-                                  );
-                                });
-                          },
+                          onPress: () {},
                         ),
                         const SizedBox(height: Dimensions.paddingSizeSmall),
                         DashboardBtnWidget(
                           image: "assets/image/all-references.svg",
                           text: 'allReferences'.tr.toUpperCase(),
-                          onPress: () {
-                            showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: Text('ERROR SOAP'.tr, style: const TextStyle(color: colorTextPrimary)),
-                                    content: const SizedBox(
-                                      width: 300,
-                                      child: Text(
-                                        "The Microsoft Access database engine cannot find the input table or query 'sr_allfilters'. Make sure it exists and that its name is spelled correctly.",
-                                        style: TextStyle(color: colorTextPrimary),
-                                      ),
-                                    ),
-                                    actions: [
-                                      TextButton(
-                                          onPressed: () {
-                                            Get.back();
-                                          },
-                                          child: Text('close'.tr))
-                                    ],
-                                  );
-                                });
-                          },
+                          onPress: () {},
                         ),
                         const SizedBox(height: Dimensions.paddingSizeSmall),
                       ],

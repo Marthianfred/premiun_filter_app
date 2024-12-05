@@ -53,10 +53,10 @@ class _BarcodeScannerWithOverlayState extends State<BarcodeScannerWithOverlay> {
               );
             },
           ),
-          const Align(
+          Align(
             alignment: Alignment.topLeft,
             child: Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [

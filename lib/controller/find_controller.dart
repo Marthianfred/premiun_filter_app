@@ -11,6 +11,7 @@ class FindController extends GetxController {
   final _getFFuel = Rx<GetFilterFuelModel?>(null);
   final _getFOil = Rx<GetFilterOilModel?>(null);
   final _getSrReferences = Rx<GetSrReferences?>(null);
+  final _getFiltro = Rx<GetFilterModel?>(null);
 
   GetFilterAirModel? get getFAir => _getFAir.value;
 
@@ -21,6 +22,8 @@ class FindController extends GetxController {
   GetFilterOilModel? get getFOil => _getFOil.value;
 
   GetSrReferences? get srReferences => _getSrReferences.value;
+
+  GetFilterModel? get getFilter => _getFiltro.value;
 
   final _idRefMk = ''.obs;
   final _idTMk = ''.obs;
@@ -50,10 +53,10 @@ class FindController extends GetxController {
   Future<List<dynamic>> getFilterAir() async {
     return _executeApiCall(
       apiCall: () => pfRepo.GetFAir(
-        idRefMk: _idRefMk.value,
-        idTMk: _idTMk.value,
+        idRefMk: int.tryParse(_idRefMk.value) ?? 0,
+        idTMk: int.tryParse(_idTMk.value) ?? 0,
         language: Get.find<LocalizationController>().locale.languageCode,
-        year: _year.value,
+        year: int.tryParse(_year.value) ?? 1234,
         McilL: _mCilL.value,
         MotCap: _motCap.value,
       ),
@@ -67,10 +70,10 @@ class FindController extends GetxController {
   Future<List<dynamic>> getFilterAirAC() async {
     return _executeApiCall(
       apiCall: () => pfRepo.GetFAirAC(
-        idRefMk: _idRefMk.value,
-        idTMk: _idTMk.value,
+        idRefMk: int.tryParse(_idRefMk.value) ?? 0,
+        idTMk: int.tryParse(_idTMk.value) ?? 0,
         language: Get.find<LocalizationController>().locale.languageCode,
-        year: _year.value,
+        year: int.tryParse(_year.value) ?? 1234,
         McilL: _mCilL.value,
         MotCap: _motCap.value,
       ),
@@ -84,10 +87,10 @@ class FindController extends GetxController {
   Future<List<dynamic>> getFilterFuel() async {
     return _executeApiCall(
       apiCall: () => pfRepo.GetFFuel(
-        idRefMk: _idRefMk.value,
-        idTMk: _idTMk.value,
+        idRefMk: int.tryParse(_idRefMk.value) ?? 0,
+        idTMk: int.tryParse(_idTMk.value) ?? 0,
         language: Get.find<LocalizationController>().locale.languageCode,
-        year: _year.value,
+        year: int.tryParse(_year.value) ?? 1234,
         McilL: _mCilL.value,
         MotCap: _motCap.value,
       ),
@@ -101,10 +104,10 @@ class FindController extends GetxController {
   Future<List<dynamic>> getFilterOil() async {
     return _executeApiCall(
       apiCall: () => pfRepo.GetFOil(
-        idRefMk: _idRefMk.value,
-        idTMk: _idTMk.value,
+        idRefMk: int.tryParse(_idRefMk.value) ?? 0,
+        idTMk: int.tryParse(_idTMk.value) ?? 0,
         language: Get.find<LocalizationController>().locale.languageCode,
-        year: _year.value,
+        year: int.tryParse(_year.value) ?? 1234,
         McilL: _mCilL.value,
         MotCap: _motCap.value,
       ),
@@ -128,7 +131,8 @@ class FindController extends GetxController {
     );
   }
 
-  Future<List<dynamic>> getSrFichas({required String pfRef, required String type}) async {
+  Future<List<dynamic>> getSrFichas(
+      {required String pfRef, required String type}) async {
     return _executeApiCall(
       apiCall: () => pfRepo.GetSrFichas(
         pfRef: pfRef,
@@ -136,8 +140,21 @@ class FindController extends GetxController {
         lang: Get.find<LocalizationController>().locale.languageCode,
       ),
       modelUpdater: (json) {
-        // _getFOil.value = GetSrReferences.fromJson(json);
         return GetSrFichas.fromJson(json).d;
+      },
+    );
+  }
+
+  Future<List<dynamic>> getFiltro({required String pfRef}) async {
+    return _executeApiCall(
+      apiCall: () => pfRepo.GetFiltro(
+        pfRef: pfRef,
+        lang: Get.find<LocalizationController>().locale.languageCode,
+      ),
+      modelUpdater: (json) {
+        debugPrint(json.toString());
+        _getFiltro.value = GetFilterModel.fromJson(json);
+        return GetFilterModel.fromJson(json).d;
       },
     );
   }
@@ -156,8 +173,10 @@ class FindController extends GetxController {
     final json = _processJson(response.bodyString!);
 
     if (json['d'] is List && json['d'].isEmpty) {
+      debugPrint('el json es empty');
       return List.empty();
     } else if (json['d'] is String) {
+      debugPrint('el json es empty');
       return List.empty();
     }
 
@@ -166,7 +185,12 @@ class FindController extends GetxController {
 
   dynamic _processJson(String jsonString) {
     return jsonDecode(
-      jsonString.replaceAll("\\r\\n", "").replaceAll("\\", "").replaceAll('"[', "[").replaceAll(']"', "]").replaceAll('.0', ""),
+      jsonString
+          .replaceAll("\\r\\n", "")
+          .replaceAll("\\", "")
+          .replaceAll('"[', "[")
+          .replaceAll(']"', "]")
+          .replaceAll('.0', ""),
     );
   }
 }

@@ -1,13 +1,13 @@
 import 'package:premium_filter/export.dart';
 
-class MainRefPremiumWidget extends StatefulWidget {
-  const MainRefPremiumWidget({super.key});
+class MainEquivalencesWidget extends StatefulWidget {
+  const MainEquivalencesWidget({super.key});
 
   @override
-  State<MainRefPremiumWidget> createState() => _MainRefPremiumWidgetState();
+  State<MainEquivalencesWidget> createState() => _MainEquivalencesWidgetState();
 }
 
-class _MainRefPremiumWidgetState extends State<MainRefPremiumWidget> {
+class _MainEquivalencesWidgetState extends State<MainEquivalencesWidget> {
   final controller = Get.find<RefController>();
 
   @override
@@ -36,7 +36,7 @@ class _MainRefPremiumWidgetState extends State<MainRefPremiumWidget> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: Dimensions.paddingSizeDefault),
                   child: CardTextFieldWithIconWidget(
-                    title: 'refPremiumText'.tr.toUpperCase(),
+                    title: 'Equivalencias'.tr.toUpperCase(),
                     controller: controller.refTextController,
                     textTitle: "insertNumberRef".tr.toUpperCase(),
                   ),

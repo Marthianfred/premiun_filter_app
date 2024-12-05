@@ -50,7 +50,7 @@ class _MainVehicleScreenState extends State<MainVehicleScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const SizedBox(height: Dimensions.paddingSizeDefault),
-                  const BackBtn(),
+                  BackBtn(),
                   const SizedBox(height: Dimensions.paddingSizeDefault),
                   _buildListView(),
                 ],
